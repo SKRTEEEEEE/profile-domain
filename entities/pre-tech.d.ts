@@ -7,7 +7,7 @@ export type PreTechBase = {
     web: string;
 }
 // export interface PreTechDocument extends PreTechBase, MongooseTimestamps, MongooseDocument{};
-export type PreTechDocument<TDocument, TTimestamps> = TDocument & TTimestamps & PreTechBase;
-export type PreTech<T> = T & PreTechBase; 
+export type PreTechDocument<TDBDocument, TDBTimestamps> = TDBDocument & TDBTimestamps & PreTechBase;
+export type PreTech<TDBBase> = TDBBase & PreTechBase; 
 // export type PreTech = PreTechBase & MongooseBase;
 
