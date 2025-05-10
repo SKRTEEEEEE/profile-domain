@@ -1,13 +1,16 @@
 // import { MongooseBase, MongooseDocument, MongooseTimestamps } from "@/core/infrastructure/mongoose/types";
 
-export type PreTechBase = {
+type PreTechBase = {
     nameId: string;
     nameBadge: string;
     color: string;
     web: string;
 }
+
+//No se usa ⬇️
+//export type PreTechDocument<TDBDocument, TDBTimestamps> = TDBDocument & TDBTimestamps & PreTechBase;
 // export interface PreTechDocument extends PreTechBase, MongooseTimestamps, MongooseDocument{};
-export type PreTechDocument<TDBDocument, TDBTimestamps> = TDBDocument & TDBTimestamps & PreTechBase;
-export type PreTech<TDBBase> = TDBBase & PreTechBase; 
+
+type PreTech<TDBBase> = TDBBase & PreTechBase; 
 // export type PreTech = PreTechBase & MongooseBase;
 
