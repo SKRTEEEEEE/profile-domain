@@ -1,10 +1,7 @@
 import { IntlBase } from "./intl";
 import { MongooseBase, MongooseTimestamps } from "@/core/infrastructure/mongoose/types";
 import { LucideIconNames } from "src/types";
-
-
-
-export enum TypeProject {
+enum TypeProject {
     Frontend = "frontend",
     Backend = "backend",
     Blockchain = "blockchain",
@@ -13,7 +10,7 @@ export enum TypeProject {
     Design = "design",
     Other = "other"
   }
-export type TechProject = {
+type TechProject = {
     nameId: string;
     nameBadge: string;
     img: null|string;
@@ -32,7 +29,7 @@ type TimeProject = {
     techs: string[]; // Referencia a los IDs de TechProject
 }
 
-export type KeyProject = {
+type KeyProject = {
     icon: {
         iconName: LucideIconNames;
         className: string;
@@ -41,7 +38,7 @@ export type KeyProject = {
     desc: IntlBase;
 }
 
-export type ProjectBase = {
+type ProjectBase = {
     nameId: string;
     openSource: null|string;
     operative: null|string;
@@ -55,5 +52,5 @@ export type ProjectBase = {
     keys: KeyProject[];
     techs: TechProject[];
 }
-// export type ProjectDocument = ProjectBase & MongooseTimestamps & Document;
-export type Project<TDBBase> = ProjectBase & TDBBase;
+// type ProjectDocument = ProjectBase & MongooseTimestamps & Document;
+type Project<TDBBase> = ProjectBase & TDBBase;

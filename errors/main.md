@@ -1,4 +1,6 @@
-// ❓ 
+```ts
+❓ 
+
 
 export abstract class ErrorBase extends Error {
     constructor(message: string, options?: ErrorOptions) {
@@ -8,9 +10,11 @@ export abstract class ErrorBase extends Error {
 export class SetEnvError extends ErrorBase {}
 export class VerificationOperationError extends ErrorBase {}
 export class StorageOperationError extends ErrorBase {}
-export class DatabaseOperationError extends ErrorBase {}
-export class DatabaseFindError extends ErrorBase {}
 export class NotFoundError extends ErrorBase {}
+export class DatabaseActionError extends ErrorBase {}
+export class DatabaseFindError extends ErrorBase {}
 export class InputParseError extends ErrorBase {}
 export class SetStateError extends ErrorBase {}
 export class HandleOperationError extends ErrorBase {}
+
+```

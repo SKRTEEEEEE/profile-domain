@@ -1,0 +1,5 @@
+export enum ErrorCodes {
+    DATABASE_ACTION = "DATABASE ACTION",
+    DATABASE_FIND = "DATABASE FIND",
+    INPUT_PARSE = "INPUT PARSE"
+}
