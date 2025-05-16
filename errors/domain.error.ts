@@ -18,6 +18,17 @@ export class DatabaseActionError extends DomainError {
         )
     }
 }
+export class SetEnvError extends DomainError {
+    constructor(necessaryFor: string, opt?:{variable?: string, place?: string, optionalMessage?: string}){
+        super(
+            opt?.variable?
+            `EnvVariable: ${opt.variable} necessary for ${necessaryFor} (in ${opt.place ? opt.place : "[undefined]"}) doesn't set correctly`:
+            `EnvVariable: necessary for ${necessaryFor} doesn't set correctly`,
+            ErrorCodes.SET_ENV,
+            opt?.optionalMessage
+        )
+    }
+}
 export class DatabaseFindError extends DomainError {
     constructor(opt?: {entitie?: string, optionalMessage?: string}){
         super(
