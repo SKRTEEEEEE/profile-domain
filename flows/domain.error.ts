@@ -1,10 +1,22 @@
 import { ErrorCodes } from "./error.codes";
+import { BaseFlow } from "./main.flow";
 
-export abstract class DomainError extends Error {
-    constructor(message: string, public readonly code: ErrorCodes, public readonly optionalMessage?: string){
-        super(optionalMessage?`${message} -> [${optionalMessage}]` : message)
-        this.name = this.constructor.name;
-    }
+export abstract class DomainError extends Error implements BaseFlow {
+  public readonly success: false = false;
+  public readonly timestamp: number;
+  public readonly meta?: Record<string, any>;
+
+  constructor(
+    message: string, 
+    public readonly type: ErrorCodes, 
+    public readonly optionalMessage?: string,
+    meta?: Record<string, any>
+  ) {
+    super(optionalMessage ? `${message} -> [${optionalMessage}]` : message);
+    this.name = this.constructor.name;
+    this.timestamp = Date.now();
+    this.meta = meta;
+  }
 }
 
 export class DatabaseActionError extends DomainError {
@@ -39,10 +51,12 @@ export class DatabaseFindError extends DomainError {
     }
 }
 export class InputParseError extends DomainError {
-    constructor(input_type: string, optionalMessage?: string){
-        super(`${input_type} doesn't match the expected type`,
-        ErrorCodes.INPUT_PARSE,
-        optionalMessage
-    )
-    }
+  constructor(message: string, opt?: { optionalMessage?: string; meta?: Record<string, any> }) {
+    super(
+      message,
+      ErrorCodes.INPUT_PARSE,
+      opt?.optionalMessage,
+      opt?.meta
+    );
+  }
 }
