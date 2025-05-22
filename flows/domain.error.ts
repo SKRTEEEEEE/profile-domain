@@ -1,3 +1,5 @@
+
+import { ErrorAppCodes } from "@/core/presentation/types/app.error";
 import { ErrorCodes } from "./error.codes";
 import { BaseFlow } from "./main.flow";
 
@@ -8,7 +10,7 @@ export abstract class DomainError extends Error implements BaseFlow {
 
   constructor(
     message: string, 
-    public readonly type: ErrorCodes, 
+    public readonly type: ErrorCodes | ErrorAppCodes, 
     public readonly optionalMessage?: string,
     meta?: Record<string, any>
   ) {

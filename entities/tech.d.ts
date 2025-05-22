@@ -1,4 +1,4 @@
-import { IntlBase } from "./intl.d.ts";
+import { IntlBase } from "./intl.type.js";
 
 type TechBase = {
   nameId: string;

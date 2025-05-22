@@ -1,4 +1,4 @@
-import { IntlBase } from "./intl";
+import { IntlBase } from "./intl.type";
 import { MongooseBase, MongooseTimestamps } from "@/core/infrastructure/mongoose/types";
 import { LucideIconNames } from "src/types";
 enum TypeProject {
