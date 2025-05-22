@@ -1,5 +1,5 @@
 
-import { ErrorAppCodes } from "@/core/presentation/types/app.error";
+import { ErrorAppCodes } from "src/types";
 import { ErrorCodes } from "./error.codes";
 import { BaseFlow } from "./main.flow";
 
