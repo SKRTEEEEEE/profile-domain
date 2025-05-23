@@ -36,3 +36,9 @@ type FullTechData = TechBase &{
     isLib?: string;
     valueUso: string;
 }
+type ReadAllFlattenTechsRes<TDB> = {
+    techs: (LengBase & TDB)[]
+    flattenTechs: FullTechData[],
+    dispoFw: {name:string}[]
+    dispoLeng: {name:string}[]
+}
