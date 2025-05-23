@@ -1,6 +1,6 @@
 import { IntlBase } from "./intl.type";
 import { MongooseBase, MongooseTimestamps } from "@/core/infrastructure/mongoose/types";
-import { LucideIconNames } from "src/types";
+import { LucideIconNames } from "@/dynamic.types";
 enum TypeProject {
     Frontend = "frontend",
     Backend = "backend",

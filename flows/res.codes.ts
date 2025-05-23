@@ -16,6 +16,6 @@ export enum ResCodes {
 }
 
 
-export interface ResFlow<T> extends BaseFlow<T>{
+export interface ResFlow<T = any> extends BaseFlow<T>{
     // module: EntitiesCodes -> es muy redundante ya que REST API (endpoints) ya hace saber el module
 }
