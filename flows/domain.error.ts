@@ -1,5 +1,5 @@
 
-import { ErrorAppCodes } from "@/dynamic.types";
+import { ErrorAppCodes } from "src/dynamic.types";
 import { ErrorCodes } from "./error.codes";
 import { BaseFlow } from "./main.flow";
 
