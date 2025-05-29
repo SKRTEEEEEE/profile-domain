@@ -1,4 +1,5 @@
 import { IntlBase } from "./intl.type.js";
+import { TechFormCategory } from "./tech.type.js";
 
 type TechBase = {
   nameId: string;
@@ -26,7 +27,7 @@ type LengBase = TechBase & {
 type TechForm = {
   lengTo?: string; 
   fwTo?: string; 
-  category: "leng" | "fw" | "lib"; 
+  category: TechFormCategory
 } & TechBase;
 
 type FullTechData = TechBase &{

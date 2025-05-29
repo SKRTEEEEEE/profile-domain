@@ -25,8 +25,8 @@ export class DatabaseActionError extends DomainError {
     constructor(action: string, meta?:{entitie?: string, optionalMessage?: string}){
         super(
             meta?.entitie?
-            `Action: ${action} in Database (for ${meta.entitie}) doesn't worked`:
-            `Action: ${action} in Database doesn't worked`,
+            `Database: ${action} action (for ${meta.entitie}) doesn't worked`:
+            `Database: ${action} action doesn't worked`,
             ErrorCodes.DATABASE_ACTION,
             meta?.optionalMessage
         )
