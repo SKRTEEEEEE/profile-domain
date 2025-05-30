@@ -11,10 +11,16 @@ export abstract class DomainError extends Error implements BaseFlow {
   constructor(
     message: string, 
     public readonly type: ErrorCodes | ErrorAppCodes, 
-    public readonly optionalMessage?: string,
+    public readonly location: string,
+    public readonly opt?: {    
+      readonly function?: string,
+      readonly friendlyDesc?: string,
+      readonly shortDesc?: string
+    },
+    // public readonly optionalMessage?: string,
     meta?: Record<string, any>
   ) {
-    super(optionalMessage ? `${message} -> [${optionalMessage}]` : message);
+    super(message);
     this.name = this.constructor.name;
     this.timestamp = Date.now();
     this.meta = meta;
@@ -22,52 +28,164 @@ export abstract class DomainError extends Error implements BaseFlow {
 }
 
 export class DatabaseActionError extends DomainError {
-    constructor(action: string, meta?:{entitie?: string, optionalMessage?: string}){
+    constructor(
+      action: string, 
+      location:Function, 
+      
+      meta?:{
+        entity?: string, 
+        optionalMessage?: string,
+        opt?:
+        {    
+          readonly function?: string,
+          readonly friendlyDesc?: string,
+          readonly shortDesc?: string
+
+        }}
+    ){
         super(
-            meta?.entitie?
-            `Database: ${action} action (for ${meta.entitie}) doesn't worked`:
-            `Database: ${action} action doesn't worked`,
+            meta?.entity?
+            `Db ${action} (for ${meta.entity}) doesn't worked. ${meta?.optionalMessage ?? ""}`:
+            `Db ${action} doesn't worked. ${meta?.optionalMessage ?? ""}`,
             ErrorCodes.DATABASE_ACTION,
-            meta?.optionalMessage
-        )
-    }
-}
-export class SetEnvError extends DomainError {
-    constructor(necessaryFor: string, meta?:{variable?: string, place?: string, optionalMessage?: string}){
-        super(
-            meta?.variable?
-            `EnvVariable: ${meta.variable} necessary for ${necessaryFor} (in ${meta.place ? meta.place : "[undefined]"}) doesn't set correctly`:
-            `EnvVariable: necessary for ${necessaryFor} doesn't set correctly`,
-            ErrorCodes.SET_ENV,
-            meta?.optionalMessage
+            location.name,
+            meta?.opt,
         )
     }
 }
 export class DatabaseFindError extends DomainError {
-    constructor(meta?: {entitie?: string, optionalMessage?: string}){
+    constructor(
+      action: string,
+      location:Function, 
+      meta?: {
+        entity?: string, 
+        optionalMessage?: string,
+        opt?:
+          {    
+            readonly function?: string,
+            readonly friendlyDesc?: string,
+            readonly shortDesc?: string
+          },
+      }
+    ){
         super(
-            `Not found in database(${meta?.entitie})`,
+            meta?.entity ? `Db ${action} (for ${meta.entity}) doesn't worked. ${meta?.optionalMessage ?? ""}`: `Db read ${action} doesn't worked. ${meta?.optionalMessage ?? ""}`,
             ErrorCodes.DATABASE_FIND,
-            meta?.optionalMessage
+            location.name, meta?.opt
         )
     }
 }
+export class SetEnvError extends DomainError {
+    constructor(
+      necessaryFor: string, 
+      location:Function | "main.ts", 
+      meta?:{
+        variable?: string, 
+        optionalMessage?: string,
+        opt?:
+        {    
+          readonly function?: string,
+          readonly friendlyDesc?: string,
+          readonly shortDesc?: string
+        },
+      }
+    
+    ){
+        super(
+            meta?.variable?
+            `EnvVariable ${meta.variable} necessary for ${necessaryFor}  doesn't set correctly`:
+            `EnvVariable necessary for ${necessaryFor} doesn't set correctly`,
+            ErrorCodes.SET_ENV,
+            typeof location === 'string' ? location : location.name, meta?.opt
+        )
+    }
+}
+
 export class InputParseError extends DomainError {
-  constructor(message: string, meta?: { optionalMessage?: string;  }) {
+  constructor(
+    location:Function, 
+     
+    message?: string, 
+    meta?: { 
+      optionalMessage?: string, 
+      opt?:
+      {    
+        readonly function?: string,
+        readonly friendlyDesc?: string,
+        readonly shortDesc?: string
+      },}
+  
+  ) {
     super(
-      message,
+      message ? message : `Error at parse inputs. ${meta?.optionalMessage ?? ""}`,
       ErrorCodes.INPUT_PARSE,
-      meta?.optionalMessage,
-      
+      location.name, meta?.opt      
     );
   }
 }
 export class UnauthorizedError extends DomainError {
-  constructor(message: string, meta?: { optionalMessage?: string;  }) {
+  constructor(
+    location:Function, 
+    message?: string, 
+    meta?: { 
+      optionalMessage?: string;  
+      opt?:
+      {    
+        readonly function?: string,
+        readonly friendlyDesc?: string,
+        readonly shortDesc?: string
+      },
+    }) {
     super(
-      message,
+      message?`${message}. ${meta?.optionalMessage ?? ""}`:`Unauthorized. ${meta?.optionalMessage ?? ""}`,
       ErrorCodes.UNAUTHORIZED_ACTION,
-      meta?.optionalMessage,
+      location.name, meta?.opt
     );
   }
+}
+export class NotImplementedError extends DomainError {
+  constructor(
+    location:Function, 
+    message?: string, 
+    meta?: { 
+      opt?:
+      {    
+        readonly function?: string,
+        readonly friendlyDesc?: string,
+        readonly shortDesc?: string
+      },
+    }) {
+    super(
+      message?message:`Not Implemented error.`,
+      ErrorCodes.NOT_IMPLEMENTED,
+      location.name, meta?.opt
+    );
+  }
+}
+
+export class SharedActionError extends DomainError {
+    constructor(
+      action: string, 
+      location:Function, 
+      
+      meta?:{
+        entity?: string, 
+        optionalMessage?: string,
+        opt?:
+        {    
+          readonly function?: string,
+          readonly friendlyDesc?: string,
+          readonly shortDesc?: string
+
+        }}
+    ){
+        super(
+            meta?.entity?
+            `Shared ${action} (for ${meta.entity}) doesn't worked. ${meta?.optionalMessage}`:
+            `Shared ${action} doesn't worked. ${meta?.optionalMessage}`,
+            ErrorCodes.SHARED_ACTION,
+            location.name,
+            meta?.opt,
+        )
+    }
 }
