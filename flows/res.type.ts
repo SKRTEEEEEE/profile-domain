@@ -19,3 +19,11 @@ export enum ResCodes {
 export interface ResFlow<T = any> extends BaseFlow<T>{
     // module: EntitiesCodes -> es muy redundante ya que REST API (endpoints) ya hace saber el module
 }
+
+export const apiResCodes = {
+    enum: ResCodes,
+    enumName: "ResCodes",
+    description: "The response type in some app action",
+    title: "Res Codes",
+    example: ResCodes.OPERATION_SUCCESS
+}

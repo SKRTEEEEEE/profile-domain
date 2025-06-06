@@ -1,5 +1,5 @@
-import { ErrorCodes } from "./error.codes"
-import { ResCodes } from "./res.codes"
+import { ErrorCodes } from "./error.type"
+import { ResCodes } from "./res.type"
 //This part is a exception of the Clean Architecture, used as a dynamic part of the application
 import { ErrorAppCodes } from "src/dynamic.types"
 

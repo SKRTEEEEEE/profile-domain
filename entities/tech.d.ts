@@ -17,11 +17,11 @@ type TechBase = {
 type LibBase = TechBase;
 
 type FwBase = TechBase & {
-  librerias: LibBase[];
+  librerias?: LibBase[];
 };
 
 type LengBase = TechBase & {
-  frameworks: FwBase[];
+  frameworks?: FwBase[];
 };
 
 type TechForm = {

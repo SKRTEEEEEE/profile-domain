@@ -57,3 +57,14 @@ export const apiTechFormCategory = {
     //   url: 'https://docs.example.com/user-roles'
     // }
 }
+export enum ReadAllParams {
+    Db = "db",
+    Flatten = "flatten",
+    Category = "category",
+    Full = "full"
+}
+export enum ActualizarGithubParams {
+  All = "all",
+  Json = "json",
+  Md = "md"
+}

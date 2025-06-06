@@ -1,6 +1,6 @@
 
 import { ErrorAppCodes } from "src/dynamic.types";
-import { ErrorCodes } from "./error.codes";
+import { ErrorCodes } from "./error.type";
 import { BaseFlow } from "./main.flow";
 
 export abstract class DomainError extends Error implements BaseFlow {

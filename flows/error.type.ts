@@ -1,12 +1,12 @@
 export enum ErrorCodes {
-    DATABASE_ACTION = "DATABASE ACTION",
-    DATABASE_FIND = "DATABASE FIND",
-    INPUT_PARSE = "INPUT PARSE",
-    SET_ENV = "SET ENV",
-    UNAUTHORIZED_ACTION = "UNAUTHORIZED ACTION",
+    DATABASE_ACTION = "DATABASE_ACTION",
+    DATABASE_FIND = "DATABASE_FIND",
+    INPUT_PARSE = "INPUT_PARSE",
+    SET_ENV = "SET_ENV",
+    UNAUTHORIZED_ACTION = "UNAUTHORIZED_ACTION",
 
-    NOT_IMPLEMENTED = "NOT IMPLEMENTED",
-    SHARED_ACTION = "SHARED ACTION"
+    NOT_IMPLEMENTED = "NOT_IMPLEMENTED",
+    SHARED_ACTION = "SHARED_ACTION"
 }
 export const errorCodeEmoji: Record<ErrorCodes, string> = {
   [ErrorCodes.DATABASE_ACTION]: '🧨',         // 500 - Acción de base de datos fallida
@@ -17,4 +17,11 @@ export const errorCodeEmoji: Record<ErrorCodes, string> = {
 
   [ErrorCodes.NOT_IMPLEMENTED]: '🚧', // 501
   [ErrorCodes.SHARED_ACTION]: '🖲️' // 502
+}
+export const apiErrorCodes = {
+    enum: ErrorCodes,
+    enumName: "ErrorCodes",
+    description: "The response type in some app action",
+    title: "Error Codes",
+    example: ErrorCodes.NOT_IMPLEMENTED
 }
