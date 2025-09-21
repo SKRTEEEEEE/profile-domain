@@ -11,11 +11,11 @@ export enum ErrorCodes {
     SHARED_ACTION = "SHARED_ACTION"
 }
 
-type ErrorCodesMetadata = {
+export type ErrorCodesMetadata = {
   emoji: string
   family: "Endpoint" | "Internal" | "Future"
   desc: string
-  friendlyTip?: string
+  friendlyDesc?: string
   code: number
 
 }
@@ -26,7 +26,7 @@ export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
       emoji: '🧨',
       family: "Internal",
       desc: "Something went wrong while saving the data",
-      friendlyTip: "Please try again after",
+      friendlyDesc: "Please try again after",
       code: 500
     },
     [ErrorCodes.DATABASE_FIND]: {
@@ -39,7 +39,7 @@ export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
       emoji: '✏️',
       family: "Endpoint",
       desc: "Your request is in an incorrect format",
-      friendlyTip: "Please verify the information and try again",
+      friendlyDesc: "Please verify the information and try again",
       code: 400
     },
     [ErrorCodes.UNAUTHORIZED_ACTION]: {
@@ -52,28 +52,28 @@ export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
       emoji: '⏱️',
       family: "Endpoint",
       desc: "Too many requests, please slow down",
-      friendlyTip: "Please wait a moment before trying again",
+      friendlyDesc: "Please wait a moment before trying again",
       code: 429
     },
     [ErrorCodes.SET_ENV]: {
       emoji: '⚙️',
       family: "Internal",
       desc: "Something went wrong while saving the data",
-      friendlyTip: "Please try again after",
+      friendlyDesc: "Please try again after",
       code: 500
     },
     [ErrorCodes.NOT_IMPLEMENTED]: {
       emoji: '🚧',
       family: "Future",
       desc: "This service is not available now",
-      friendlyTip: "Contact us for more info",
+      friendlyDesc: "Contact us for more info",
       code: 501
     },
     [ErrorCodes.SHARED_ACTION]: {
       emoji: '🖲️',
       family: "Internal",
       desc: "Sorry, something went wrong",
-      friendlyTip: "Contact us if persist",
+      friendlyDesc: "Contact us if persist",
       code: 502
     }
 }
