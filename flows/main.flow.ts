@@ -6,7 +6,7 @@ import { ErrorAppCodes } from "src/dynamic.types"
 export type BaseFlow<T = any> = {
     success: boolean,
     type: ErrorCodes | ResCodes | ErrorAppCodes, 
-    message: string | undefined | null,
+    message?: string | null,
     data?: T | T[],
     timestamp?: number,
     meta?: Record<string,any>

@@ -1,3 +1,5 @@
+import { IntlBase, IntlKey } from "../entities/intl.type"
+
 export enum ErrorCodes {
     DATABASE_ACTION = "DATABASE_ACTION",
     DATABASE_FIND = "DATABASE_FIND",
@@ -15,12 +17,22 @@ export type ErrorCodesMetadata = {
   emoji: string
   family: "Endpoint" | "Internal" | "Future"
   desc: string
-  friendlyDesc?: string
+  friendlyDesc: string
   code: number
 
 }
+export type ErrorMeta = {
+  shortDesc?: string
+  desc?: Record<IntlKey, string>
+  [key: string]: unknown
+}
 
-
+export type DomainErrorBase = {
+  readonly location: Function
+  readonly func: string
+  readonly friendlyDesc?: IntlBase,
+  meta?: ErrorMeta
+}
 export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
     [ErrorCodes.DATABASE_ACTION]: {
       emoji: '🧨',
@@ -32,7 +44,8 @@ export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
     [ErrorCodes.DATABASE_FIND]: {
       emoji: '🔍',
       family: "Endpoint",
-      desc: "Sorry, we couldn't locate that content",
+      desc: "Something went wrong",
+      friendlyDesc: "Sorry, we couldn't locate that content",
       code: 404
     },
     [ErrorCodes.INPUT_PARSE]: {
@@ -46,6 +59,7 @@ export const ERROR_CODES_METADATA: Record<ErrorCodes, ErrorCodesMetadata> = {
       emoji: '🔐',
       family: "Endpoint",
       desc: "You do not have permission to perform this action",
+      friendlyDesc: "Verify your credentials and try again",
       code: 401
     },
     [ErrorCodes.THROTTLE]: {

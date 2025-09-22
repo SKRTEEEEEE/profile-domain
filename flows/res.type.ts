@@ -1,3 +1,5 @@
+import { ErrorAppCodes } from "src/dynamic.types";
+import { ErrorCodes } from "./error.type";
 import { BaseFlow } from "./main.flow";
 
 // export enum EntitiesCodes  { 
@@ -15,9 +17,18 @@ export enum ResCodes {
     OPERATION_SUCCESS = "OPERATION_SUCCESS" 
 }
 
+type ResMeta = {
+    friendlyDesc?: string
+    [key: string]: string | number | boolean | undefined | null
+  }
 
-export interface ResFlow<T = any> extends BaseFlow<T>{
-    // module: EntitiesCodes -> es muy redundante ya que REST API (endpoints) ya hace saber el module
+export type  ResFlow<T = any> = {
+    success: boolean;
+    type: ErrorCodes | ResCodes | ErrorAppCodes;
+    message?: string | null;
+    data?: T | T[];
+    timestamp?: number;
+    meta?: ResMeta  
 }
 
 export const apiResCodes = {
