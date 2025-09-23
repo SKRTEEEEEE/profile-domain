@@ -1,5 +1,5 @@
 ```ts
-❓ 
+❓
 
 
 export abstract class ErrorBase extends Error {

@@ -1,5 +1,5 @@
-import { IntlBase } from "./intl.type.js";
-import { TechFormCategory } from "./tech.type.js";
+import { IntlBase } from './intl.type.js';
+import { TechFormCategory } from './tech.type.js';
 
 type TechBase = {
   nameId: string;
@@ -25,21 +25,21 @@ type LengBase = TechBase & {
 };
 
 type TechForm = {
-  lengTo?: string; 
-  fwTo?: string; 
-  category: TechFormCategory
+  lengTo?: string;
+  fwTo?: string;
+  category: TechFormCategory;
 } & TechBase;
 
-type FullTechData = TechBase &{
-        valueAfin: string;
-    valueExp: string;
-    isFw?: string;
-    isLib?: string;
-    valueUso: string;
-}
+type FullTechData = TechBase & {
+  valueAfin: string;
+  valueExp: string;
+  isFw?: string;
+  isLib?: string;
+  valueUso: string;
+};
 type ReadAllFlattenTechsRes<TDB> = {
-    techs: (LengBase & TDB)[]
-    flattenTechs: FullTechData[],
-    dispoFw: {name:string}[]
-    dispoLeng: {name:string}[]
-}
+  techs: (LengBase & TDB)[];
+  flattenTechs: FullTechData[];
+  dispoFw: { name: string }[];
+  dispoLeng: { name: string }[];
+};
