@@ -51,5 +51,4 @@ type ProjectBase = {
   keys: KeyProject[];
   techs: TechProject[];
 };
-// type ProjectDocument = ProjectBase & MongooseTimestamps & Document;
-type Project<TDBBase> = ProjectBase & TDBBase;
+

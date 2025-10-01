@@ -1,3 +1,4 @@
+import { DBBase } from '@/dynamic.types.js';
 import { IntlBase } from './intl.type.js';
 import { TechFormCategory } from './tech.type.js';
 
@@ -23,6 +24,13 @@ type FwBase = TechBase & {
 type LengBase = TechBase & {
   frameworks?: FwBase[];
 };
+type Fw = TechBase & DBBase & {
+  librerias?: (LibBase&DBBase)[];
+}
+type Leng = TechBase & DBBase & {
+  frameworks?: Fw[];
+}
+
 
 type TechForm = {
   lengTo?: string;
@@ -37,8 +45,8 @@ type FullTechData = TechBase & {
   isLib?: string;
   valueUso: string;
 };
-type ReadAllFlattenTechsRes<TDB> = {
-  techs: (LengBase & TDB)[];
+type ReadAllFlattenTechsRes = {
+  techs: (LengBase & DBBase)[];
   flattenTechs: FullTechData[];
   dispoFw: { name: string }[];
   dispoLeng: { name: string }[];

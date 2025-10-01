@@ -13,4 +13,3 @@ type UserBase = UserFormS & {
   verifyTokenExpire?: string; // esto es para veificar el email
   paymentId?: string;
 };
-type User<TDBBase> = TDBBase & UserBase;
