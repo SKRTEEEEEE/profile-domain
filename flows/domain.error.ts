@@ -3,7 +3,7 @@ import { BaseFlow } from './main.flow';
 import { IntlBase } from '../entities/intl.type';
 
 export abstract class DomainError extends Error implements BaseFlow {
-  public readonly success: false = false;
+  public readonly success = false;
   public readonly timestamp: number;
   public readonly meta?: ErrorMeta;
 
@@ -54,6 +54,8 @@ export class DatabaseFindError extends DomainError implements DomainErrorBase {
     func: string,
     friendlyDesc?: IntlBase,
     meta?: {
+      shortDesc?: string;
+
       entity?: string;
       optionalMessage?: string;
     },
