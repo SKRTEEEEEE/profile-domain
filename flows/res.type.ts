@@ -21,7 +21,7 @@ export type ResFlow<T = unknown> = {
   success: boolean;
   type: ErrorCodes | ResCodes ;
   message?: string | null;
-  data?: T | T[];
+  data?: T ;
   timestamp?: number;
   meta?: {
   friendlyDesc?: string;

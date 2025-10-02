@@ -6,7 +6,7 @@ export type BaseFlow<T = unknown> = {
   success: boolean;
   type: ErrorCodes | ResCodes ;
   message?: string | null;
-  data?: T | T[];
+  data?: T ;
   timestamp?: number;
   meta?: Record<string, unknown>;
   // meta?: Record<string, any>;
