@@ -1,4 +1,3 @@
-import { ErrorAppCodes } from 'src/dynamic.types';
 import { DomainErrorBase, ErrorCodes, ErrorMeta } from './error.type';
 import { BaseFlow } from './main.flow';
 import { IntlBase } from '../entities/intl.type';
@@ -6,11 +5,11 @@ import { IntlBase } from '../entities/intl.type';
 export abstract class DomainError extends Error implements BaseFlow {
   public readonly success: false = false;
   public readonly timestamp: number;
-  public readonly meta?: Record<string, any>;
+  public readonly meta?: ErrorMeta;
 
   constructor(
     message: string,
-    public readonly type: ErrorCodes | ErrorAppCodes,
+    public readonly type: ErrorCodes ,
     public readonly location: Function,
     public readonly func: string,
     public readonly friendlyDesc?: IntlBase,

@@ -1,6 +1,4 @@
-import { ErrorAppCodes } from 'src/dynamic.types';
 import { ErrorCodes } from './error.type';
-import { BaseFlow } from './main.flow';
 
 // export enum EntitiesCodes  {
 //     TECH = "TechBase",
@@ -17,18 +15,18 @@ export enum ResCodes {
   OPERATION_SUCCESS = 'OPERATION_SUCCESS',
 }
 
-type ResMeta = {
-  friendlyDesc?: string;
-  [key: string]: string | number | boolean | undefined | null;
-};
 
-export type ResFlow<T = any> = {
+
+export type ResFlow<T = unknown> = {
   success: boolean;
-  type: ErrorCodes | ResCodes | ErrorAppCodes;
+  type: ErrorCodes | ResCodes ;
   message?: string | null;
   data?: T | T[];
   timestamp?: number;
-  meta?: ResMeta;
+  meta?: {
+  friendlyDesc?: string;
+  [key: string]: string | number | boolean | undefined | null;
+};
 };
 
 export const apiResCodes = {

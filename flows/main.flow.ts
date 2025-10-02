@@ -1,13 +1,13 @@
 import { ErrorCodes } from './error.type';
 import { ResCodes } from './res.type';
 //This part is a exception of the Clean Architecture, used as a dynamic part of the application
-import { ErrorAppCodes } from 'src/dynamic.types';
 
-export type BaseFlow<T = any> = {
+export type BaseFlow<T = unknown> = {
   success: boolean;
-  type: ErrorCodes | ResCodes | ErrorAppCodes;
+  type: ErrorCodes | ResCodes ;
   message?: string | null;
   data?: T | T[];
   timestamp?: number;
-  meta?: Record<string, any>;
+  meta?: Record<string, unknown>;
+  // meta?: Record<string, any>;
 };
