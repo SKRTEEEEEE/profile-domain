@@ -1,14 +1,6 @@
 import { IntlBase } from './intl.type';
-// import { LucideIconNames } from '@/dynamic.types'; // Esto es muy mala práctica, lo dejo para tener un ejemplo de uso y recordar que no debería hacerse, es mejor utilizar tipos dinámicos de ts <T>
-enum TypeProject {
-  Frontend = 'frontend',
-  Backend = 'backend',
-  Blockchain = 'blockchain',
-  Database = 'database',
-  DevOps = 'devops',
-  Design = 'design',
-  Other = 'other',
-}
+// import { LucideIconNames } from 'src/dynamic.types'; // Esto es muy mala práctica, lo dejo para tener un ejemplo de uso y recordar que no debería hacerse, es mejor utilizar tipos dinámicos de ts <T>
+
 type TechProject = {
   nameId: string;
   nameBadge: string;
@@ -45,7 +37,7 @@ type KeyProject<TIconNames> = {
 //   desc: IntlBase;
 // };
 
-type ProjectBase = {
+type ProjectBase<TIconNames = string> = {
   nameId: string;
   openSource: null | string;
   operative: null | string;
@@ -55,7 +47,7 @@ type ProjectBase = {
   title: IntlBase;
   desc: IntlBase;
   lilDesc: IntlBase;
-  time: TimeProject[];
+  time: TimeProject<TIconNames>[];
   keys: KeyProject[];
   techs: TechProject[];
 };
